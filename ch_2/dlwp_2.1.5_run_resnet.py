@@ -47,4 +47,9 @@ _, index = torch.max(out, 1)
 percentage = torch.nn.functional.softmax(out, dim=1)[0] * 100
 print(labels[index[0]], percentage[index[0]].item())
 
+print("Sort the scores")
+_, indices = torch.sort(out, descending=True)
+print("Top 5 indices")
+pprint([(labels[idx], percentage[idx].item) for idx in indices[0][:5]])
+
 
