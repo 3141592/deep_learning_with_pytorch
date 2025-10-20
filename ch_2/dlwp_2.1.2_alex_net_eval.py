@@ -7,6 +7,7 @@ from pprint import pprint
 
 # Check if CUDA is available
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+pprint(device)
 
 # 1. Load pretrained weights
 weights = AlexNet_Weights.IMAGENET1K_V1
