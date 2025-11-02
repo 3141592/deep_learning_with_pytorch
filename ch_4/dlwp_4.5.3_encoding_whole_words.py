@@ -23,6 +23,21 @@ pprint(f"words_in_line: {words_in_line}")
 
 pprint("Mapping of words to indexes")
 word_list = sorted(set(clean_words(text)))
-pprint(f"word_list: {word_list}")
+pprint(f"word_list[:15]: {word_list[:15]}")
+pprint(f"word_list[:15]: {word_list[:15]}")
 
+word2index_dict = {word: i for (i, word) in enumerate(word_list)}
+
+# Use list comprehension to get the first 5 items in the dictionary and format them for pprint
+first_items = {k: word2index_dict[k] for k in list(word2index_dict)[:15]}
+pprint(f"First elements of word2index_dict: {first_items}")
+
+pprint("One-hot encode sentence")
+word_t = torch.zeros(len(words_in_line), len(word2index_dict))
+for i, word in enumerate(words_in_line):
+  word_index = word2index_dict[word]
+  word_t[i][word_index] = 1
+  print('{:2} {:4} {}'.format(i, word_index, word))
+
+pprint(f"word_t.shape: {word_t.shape}")
 
